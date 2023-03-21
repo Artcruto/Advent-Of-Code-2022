@@ -8,15 +8,9 @@ namespace Day_1
     {
         static void Main(string[] args)
         {
-            var values = new List<string>();
-            var results = new List<int>();
-            string value;
-            do
-            {
-                value = Console.ReadLine();
-                if (value != "end") values.Add(value);
-            } while (value != "end");
+            var values = ReadValues();
 
+            var results = new List<int>();
             var currentCalories = 0;
             foreach (var calories in values)
             {
@@ -35,6 +29,19 @@ namespace Day_1
             var topThree = results.OrderByDescending(_ => _).Take(3).Sum();
             Console.WriteLine(
                 $", calories - {results.OrderByDescending(_ => _).Take(1).Sum()}, topThree - {topThree}"); // calories - 66306,  topThree - 195292
+        }
+
+        static IEnumerable<string> ReadValues()
+        {
+            var values = new List<string>();
+            string value;
+            do
+            {
+                value = Console.ReadLine();
+                if (value != "end") values.Add(value);
+            } while (value != "end");
+
+            return values;
         }
     }
 }
